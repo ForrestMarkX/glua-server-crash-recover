@@ -1,7 +1,4 @@
-local maxcrashcount = CreateConVar("max_crash_count", "2", FCVAR_ARCHIVE + FCVAR_NOTIFY, "Max times the server can crash before choosing the next map or a random map"):GetInt()
-cvars.AddChangeCallback("max_crash_count", function(cvar, oldvalue, newvalue)
-	maxcrashcount = tonumber(newvalue)
-end)
+CreateConVar("max_crash_count", "2", FCVAR_ARCHIVE + FCVAR_NOTIFY, "Max times the server can crash before choosing the next map or a random map")
 
 local OldRunConsoleCommand = RunConsoleCommand
 function RunConsoleCommand(cvar, ...)
@@ -48,7 +45,7 @@ hook.Add("InitPostEntity", "InitPostEntity.CrashRecover", function()
 		local tab = util.JSONToTable(file.Read("gmod_crashrecover.txt", "DATA"))
 		local count = tab["crash_count"]
 	
-		if count >= maxcrashcount then
+		if count >= (GetConVar("max_crash_count"):GetInt() or 2) then
 			tab["crash_count"] = 0
 			file.Write("gmod_crashrecover.txt", util.TableToJSON(tab))
 			
