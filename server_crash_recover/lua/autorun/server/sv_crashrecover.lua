@@ -12,11 +12,12 @@ end
 
 local OldConsoleCommand = game.ConsoleCommand
 function game.ConsoleCommand(stringCommand)
-	if string.find(stringCommand, "changelevel") then
-		local map = string.Replace(stringCommand, "changelevel", "")
-		map = string.Replace(map, "\n", "")
-		map = string.Replace(map, " ", "")
-		
+	local split = string.Split(stringCommand, " ")
+
+	if not split or not split[1] or not split[2] then return end
+
+	if split[1] == "changelevel" then
+		local map = split[2]
 		GameTravel(map)
 	end
 	
