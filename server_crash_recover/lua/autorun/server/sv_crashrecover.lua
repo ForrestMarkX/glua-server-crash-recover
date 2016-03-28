@@ -6,9 +6,7 @@ end)
 local OldRunConsoleCommand = RunConsoleCommand
 function RunConsoleCommand(cvar, ...)
 	if cvar == "changelevel" then
-		local var = {...}
-		local map = tostring(var[1])
-		
+		local map = tostring(select(1,...))
 		GameTravel(map)
 	end
 	
