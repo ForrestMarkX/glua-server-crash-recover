@@ -39,6 +39,10 @@ function GameTravel(map)
 	file.Write("gmod_crashrecover.txt", util.TableToJSON(tab))
 end
 
+local function RealMap(map)
+	return string_match(map, "(.+)%.bsp")
+end
+
 // Change this to the map prefixes you wish to use such as zs_, zm_, or de_
 local map_prefixes = {"gm_"}
 hook.Add("InitPostEntity", "InitPostEntity.CrashRecover", function()
