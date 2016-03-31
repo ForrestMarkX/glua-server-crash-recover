@@ -40,7 +40,7 @@ function GameTravel(map)
 end
 
 local function RealMap(map)
-	return string_match(map, "(.+)%.bsp")
+	return string.match(map, "(.+)%.bsp")
 end
 
 // Change this to the map prefixes you wish to use such as zs_, zm_, or de_
